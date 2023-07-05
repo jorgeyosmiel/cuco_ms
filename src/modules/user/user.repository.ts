@@ -35,7 +35,7 @@ export class UserRepository extends Repository<UserEntity> {
     limit: number = PAGE_SIZE,
   ): Promise<UserEntity[]> {
     return this.createQueryBuilder()
-      .where('is_active = :active', { active: true })
+      .where('is_active = :active', { active: false })
       .andWhere('deleted =:deleted', { deleted: deleted })
       .getMany();
   }
@@ -48,7 +48,7 @@ export class UserRepository extends Repository<UserEntity> {
    */
   countInactiveUsers(deleted: boolean): Promise<number> {
     return this.createQueryBuilder()
-      .where('is_active = :active', { active: true })
+      .where('is_active = :active', { active: false })
       .andWhere('deleted =:deleted', { deleted: deleted })
       .getCount();
   }
