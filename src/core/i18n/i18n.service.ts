@@ -7,7 +7,7 @@ import { REQUEST } from '@nestjs/core';
 import { DEFAULT_LOCALE } from '@config/config';
 
 i18n.configure({
-  directory: join(__dirname, '../../locales'),
+  directory: join(__dirname, '../../../locales'),
   defaultLocale: DEFAULT_LOCALE,
   updateFiles: false,
 });

@@ -3,7 +3,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { UserService } from 'src/modules/user/user.service';
+import { UserService } from '@modules/user/user.service';
 
 import { Injectable } from '@nestjs/common';
 
@@ -27,6 +27,7 @@ export class UniqueEmailValidator implements ValidatorConstraintInterface {
     value: any,
     validationArguments?: ValidationArguments,
   ): Promise<boolean> {
+    console.error(`EL ERROR AQUI ${typeof this.userService}`);
     const result = await this.userService.findByEmail(value);
     return !result;
   }

@@ -21,11 +21,13 @@ import { ChangePasswordDto } from '../dto/change-password.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserService } from '../user.service';
 
-@ApiTags('/v1/user')
+const prefixPath = '/user';
+
+@ApiTags(prefixPath)
 @ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
 @UseGuards(JwtAuthGuard)
-@Controller('v1/user')
+@Controller(prefixPath)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

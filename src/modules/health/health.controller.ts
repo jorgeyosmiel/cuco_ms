@@ -9,7 +9,7 @@ import {
 } from '@nestjs/terminus';
 import { Public } from '../../common/decorators';
 import { Transport } from '@nestjs/microservices';
-import { DATABASE_DB_NAME } from '@config/config';
+import { DATABASE_DB_NAME, PORT } from '@config/config';
 
 @Controller('health')
 export class HealthController {
@@ -32,16 +32,16 @@ export class HealthController {
       async () =>
         this.microservice.pingCheck('tcp', {
           transport: Transport.TCP,
-          options: { host: 'localhost', port: 3000 },
+          options: { host: 'localhost', port: PORT },
         }),
-      /* async () =>
+      async () =>
         this.microservice.pingCheck('redis', {
           transport: Transport.REDIS,
           options: {
             host: 'localhost',
             port: 6379,
           },
-        }), */
+        }),
     ]);
   }
 }

@@ -6,7 +6,7 @@ import langs from './locales/index';
 @Injectable()
 export class MessageService {
   static langs: Map<string, Map<string, string>>;
-  static languageDefault = DEFAULT_LOCALE || 'vi';
+  static languageDefault = DEFAULT_LOCALE || 'en';
 
   static init(): void {
     MessageService.langs = langs;

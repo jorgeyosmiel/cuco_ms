@@ -9,14 +9,25 @@ import * as winston from 'winston';
 import { AtGuard } from '@common/guards';
 import { DatabaseModule } from '@core/database/database.module';
 import { appConfig, authConfig, databaseConfig } from './configs';
+import { HealthModule } from '@modules/health/health.module';
+import { AuthModule } from '@modules/auth/auth.module';
+import { ValidatorsModule } from '@common/validators';
+import { I18nModule } from '@core/i18n/i18n.module';
+import { UserModule } from '@modules/user/user.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env'],
+      expandVariables: true,
       load: [appConfig, databaseConfig, authConfig],
     }),
+    HealthModule,
+    ValidatorsModule,
+    I18nModule,
+    UserModule,
+    AuthModule,
     DatabaseModule,
     WinstonModule.forRoot({
       level: 'debug',

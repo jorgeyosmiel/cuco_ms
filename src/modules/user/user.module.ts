@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { UserEntity } from '@core/entities/user.entity';
@@ -8,11 +8,12 @@ import { UserController } from './controller/user.controller';
 import { UserSubscriber } from './subscriber/user.subscriber';
 import { UserRepository } from './user.repository';
 import { UserService } from './user.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity])],
+  imports: [TypeOrmModule.forFeature([UserEntity]), ConfigModule],
   controllers: [UserController, AdminUserController],
-  providers: [UserService, UserSubscriber, UserRepository],
+  providers: [UserService, UserSubscriber, UserRepository, Logger],
   exports: [UserService],
 })
 export class UserModule {}

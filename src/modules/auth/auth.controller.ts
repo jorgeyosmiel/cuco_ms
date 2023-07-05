@@ -20,9 +20,12 @@ import { AuthService } from './auth.service';
 import { LoginRequestDto } from './dto/login-request.dto';
 import { RegisterRequestDto } from './dto/register-request.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { Public } from '@common/decorators';
 
-@ApiTags('v1/auth')
-@Controller('v1/auth')
+const prefixPath = '/auth';
+
+@ApiTags(prefixPath)
+@Controller(prefixPath)
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
@@ -31,6 +34,7 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Throttle(10, 10)
+  @Public()
   @Post('/login')
   async login(@Body() request: LoginRequestDto): Promise<BaseResponseDto<any>> {
     const data = await this.authService.login(request);
@@ -48,6 +52,7 @@ export class AuthController {
   }
 
   @HttpCode(HttpStatus.OK)
+  @Public()
   @Post('/register')
   async register(
     @Body() registerRequestDto: RegisterRequestDto,

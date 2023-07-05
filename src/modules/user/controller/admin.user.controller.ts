@@ -27,10 +27,12 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserService } from '../user.service';
 
-@ApiTags('/v1/admin/user')
+const prefixPath = '/admin/user';
+
+@ApiTags(prefixPath)
 @ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
-@Controller('v1/admin/user')
+@Controller(prefixPath)
 export class AdminUserController {
   constructor(private readonly userService: UserService) {}
 
