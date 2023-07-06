@@ -14,6 +14,7 @@ import { AuthModule } from '@modules/auth/auth.module';
 import { ValidatorsModule } from '@common/validators';
 import { I18nModule } from '@core/i18n/i18n.module';
 import { UserModule } from '@modules/user/user.module';
+import { NodemailerModule } from '@modules/nodemailer/nodemailer.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UserModule } from '@modules/user/user.module';
     HealthModule,
     ValidatorsModule,
     I18nModule,
+    NodemailerModule,
     UserModule,
     AuthModule,
     DatabaseModule,
