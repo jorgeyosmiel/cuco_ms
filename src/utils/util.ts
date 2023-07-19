@@ -69,6 +69,17 @@ export const base64Decode = (str: string) => {
   return b.toString();
 };
 
+export const getFileToBase64 = (file: File) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    return reader.result;
+  };
+  reader.onerror = function (error) {
+    return error;
+  };
+};
+
 /**
  *
  * @param str

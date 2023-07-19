@@ -8,13 +8,14 @@ import {
 import * as winston from 'winston';
 import { AtGuard } from '@common/guards';
 import { DatabaseModule } from '@core/database/database.module';
-import { appConfig, authConfig, databaseConfig } from './configs';
+import { appConfig, authConfig, databaseConfig, fileConfig } from './configs';
 import { HealthModule } from '@modules/health/health.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { ValidatorsModule } from '@common/validators';
 import { I18nModule } from '@core/i18n/i18n.module';
 import { UserModule } from '@modules/user/user.module';
 import { NodemailerModule } from '@modules/nodemailer/nodemailer.module';
+import { StorageModule } from '@modules/storage/storage.module';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { NodemailerModule } from '@modules/nodemailer/nodemailer.module';
       isGlobal: true,
       envFilePath: ['.env'],
       expandVariables: true,
-      load: [appConfig, databaseConfig, authConfig],
+      load: [appConfig, databaseConfig, authConfig, fileConfig],
     }),
     HealthModule,
     ValidatorsModule,
@@ -30,6 +31,7 @@ import { NodemailerModule } from '@modules/nodemailer/nodemailer.module';
     NodemailerModule,
     UserModule,
     AuthModule,
+    StorageModule,
     DatabaseModule,
     WinstonModule.forRoot({
       level: 'debug',

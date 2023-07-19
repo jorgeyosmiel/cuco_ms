@@ -18,7 +18,6 @@ import FastifyMultipart from '@fastify/multipart';
 import fastifyCsrf from '@fastify/csrf-protection';
 import compression from '@fastify/compress';
 import secureSession from '@fastify/secure-session';
-import { appConfig } from '@config/app.config';
 import { ValidationConfig } from './configs';
 import { join } from 'path';
 import { isEnv } from './utils';
@@ -42,7 +41,7 @@ async function bootstrap() {
   ).split(',');
 
   // -------------- Middleware --------------
-  app.register(FastifyMultipart);
+  app.register(FastifyMultipart, { attachFieldsToBody: true });
   // -------------------------------------------
 
   // -------------- Global filter/pipes --------------

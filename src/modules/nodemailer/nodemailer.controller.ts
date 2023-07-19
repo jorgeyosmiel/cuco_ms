@@ -4,8 +4,10 @@ import { ApiTags } from '@nestjs/swagger';
 
 import { NodemailerService } from './nodemailer.service';
 
-@ApiTags('nodemailer')
-@Controller('nodemailer')
+const prefixPath = '/nodemailer';
+
+@ApiTags(prefixPath)
+@Controller(prefixPath)
 export class NodemailerController {
   constructor(private readonly nodemailerService: NodemailerService) {}
   @Get()
