@@ -4,6 +4,7 @@ import {
   IsNotEmpty,
   Length,
   Validate,
+  IsPhoneNumber,
 } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
@@ -42,4 +43,8 @@ export class AdminCreateUserDto {
   @IsNotEmpty({ message: 'isActive is not empty' })
   @IsBoolean({ message: 'isActive invalid' })
   isActive: boolean;
+
+  @ApiProperty({ example: '53841653' })
+  @IsPhoneNumber('CU', { message: 'phoneNumber invalid' })
+  phoneNumber: string;
 }

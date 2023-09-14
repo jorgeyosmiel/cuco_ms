@@ -3,6 +3,7 @@ import { DateAudit } from '@core/base/date_audit.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 import { RoleEnum } from '@models/enums/role.enum';
+import { LanguageEnum } from '@models/enums';
 
 // @Index()
 @Entity({ name: 'user' })
@@ -29,8 +30,20 @@ export class UserEntity extends DateAudit {
   @Column({ name: 'role', type: 'varchar', default: RoleEnum.USER })
   role: string;
 
-  @Column({ name: 'is_active', type: 'boolean', default: true })
+  @Column({ name: 'isActive', type: 'boolean', default: true })
   isActive: boolean;
+
+  @Column({ name: 'phoneNumber', type: 'varchar', nullable: false })
+  phoneNumber: boolean;
+
+  @Column({ name: 'country', type: 'varchar', nullable: false })
+  country: boolean;
+
+  @Column({ name: 'address', type: 'varchar', nullable: true })
+  address: boolean;
+
+  @Column({ name: 'language', type: 'varchar', default: LanguageEnum.ES })
+  language: string;
 
   constructor(partial: Partial<UserEntity>) {
     super();
